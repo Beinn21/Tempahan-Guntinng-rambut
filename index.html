@@ -181,14 +181,14 @@
       const noTelefon = form.noTelefon.value;
       const masaTempahan = form.masaTempahan.value;
 
-      fetch(https://script.google.com/macros/s/AKfycbxKdyRwacUBaqw1wrY_hz2PWrRQ8c6nkyOEIaIeA0LL1tlduPgMo48xYvTdZevAZvyE/exec, {
-        method: 'POST',
-        body: new URLSearchParams({
-          'nama': nama,
-          'noTelefon': noTelefon,
-          'masaTempahan': masaTempahan
-        })
-      })
+      fetch(https://script.google.com/macros/s/AKfycbxHkiBxi5uwjDxQsXg9tBJODh7rOaUuUC0WuAEI_PyH7Wn4p7OQBMU3iWoFDFiRCV-e/exec, {
+  method: 'POST',
+  body: new URLSearchParams({
+    'nama': nama,
+    'noTelefon': noTelefon,
+    'masaTempahan': masaTempahan
+  })
+})
       .then(response => {
         if (response.ok) {
           alert('Tempahan berjaya! Jumpa nanti.');
