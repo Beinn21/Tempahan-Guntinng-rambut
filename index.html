@@ -1,20 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tempahan Gunting Rambut</title>
+
+  <style>
+    /* Basic Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #121212; /* Gelap */
+      color: #f0f0f0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: #1f1f1f;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #00ffc3;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #cccccc;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #333333;
+      color: #f0f0f0;
+      font-size: 14px;
+      transition: box-shadow 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 8px #00ffc3;
+    }
+
+    button {
+      background-color: #00ffc3;
+      color: #000000;
+      padding: 12px;
+      border: none;
+      width: 100%;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #00e6b8;
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #555555;
+    }
+  </style>
 </head>
 <body>
-  <h1>Borang Tempahan Gunting Rambut</h1>
-  
-  <form id="bookingForm">
-    <label>Nama:</label><br>
-    <input type="text" name="nama" required><br><br>
 
-    <label>Masa Tempahan:</label><br>
-    <select name="masaTempahan" required>
-       <option value="2:00 PM">2:00 PM</option>
-            <option value="3:00 PM">3:00 PM</option>
+  <div class="container">
+    <h2>Tempahan Gunting Rambut</h2>
+
+    <form id="bookingForm">
+      <label for="nama">Nama:</label>
+      <input type="text" name="nama" id="nama" required placeholder="Masukkan nama anda">
+
+      <label for="masaTempahan">Masa Tempahan:</label>
+      <select name="masaTempahan" id="masaTempahan" required>
+         <option value="3:00 PM">3:00 PM</option>
             <option value="4:00 PM">4:00 PM</option>
             <option value="5:00 PM">5:00 PM</option>
             <option value="9:00 PM">9:00 PM</option>
@@ -22,11 +105,16 @@
             <option value="11:00 PM">11:00 PM</option>
             <option value="12:00 PM">12:00 PM</option>
             <option value="1:00 AM">1:00 AM</option>
-      <!-- Boleh tambah lagi slot -->
-    </select><br><br>
+        <!-- Tambah lagi ikut jadual kau -->
+      </select>
 
-    <button type="submit">Tempah Sekarang</button>
-  </form>
+      <button type="submit">Tempah Sekarang</button>
+    </form>
+
+    <div class="footer">
+      © 2025 BeinnBarber. Semua Hak DiLindungi.
+    </div>
+  </div>
 
   <script>
     const form = document.getElementById('bookingForm');
@@ -37,23 +125,27 @@
       const nama = form.nama.value;
       const masaTempahan = form.masaTempahan.value;
 
-      fetch('https://script.google.com/macros/s/AKfycbxJ1Ni0vAumY41baxQPB1A5pA-gcP3PFFxLT98aBCaTYdknmtzB3qmmjIC8B_w1vr7b/exec', {
+      fetch('PASTE_WEB_APP_URL_DI_SINI', {
         method: 'POST',
         body: new URLSearchParams({
           'nama': nama,
           'masaTempahan': masaTempahan
         })
-      }).then(response => {
+      })
+      .then(response => {
         if (response.ok) {
-          alert('Tempahan berjaya dihantar!');
+          alert('Tempahan berjaya! Jumpa nanti.');
           form.reset();
         } else {
-          alert('Ada masalah hantar tempahan.');
+          alert('Ada masalah, cuba lagi!');
         }
-      }).catch(error => {
-        alert('Error: ' + error);
+      })
+      .catch(error => {
+        console.error(error);
+        alert('Ralat! Sila cuba semula.');
       });
     });
   </script>
+
 </body>
 </html>
