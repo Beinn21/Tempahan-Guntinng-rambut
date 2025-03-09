@@ -8,27 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: #0f0f0f;
       color: #f0f0f0;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      animation: fadeIn 1.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      height: 100vh;
+      margin: 0;
     }
 
     .container {
@@ -38,11 +26,6 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.8);
       width: 400px;
       text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .container:hover {
-      transform: scale(1.02);
     }
 
     .logo img {
@@ -52,7 +35,7 @@
 
     h2 {
       margin-bottom: 20px;
-      color: #00ffc3;
+      color: #ffffff; /* WARNA PUTIH UNTUK TAJUK */
       font-weight: 600;
       font-size: 24px;
     }
@@ -74,29 +57,24 @@
       background-color: #333333;
       color: #f0f0f0;
       font-size: 14px;
-      transition: box-shadow 0.3s;
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      box-shadow: 0 0 10px #00ffc3;
     }
 
     button {
-      background-color: #00ffc3;
-      color: #000000;
+      background-color: #25D366; /* HIJAU SAMA MACAM WHATSAPP */
+      color: white; /* TULISAN PUTIH */
       padding: 14px;
       border: none;
       width: 100%;
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
       font-size: 16px;
+      margin-bottom: 10px;
+      transition: background-color 0.3s, transform 0.2s;
     }
 
     button:hover {
-      background-color: #00e6b8;
+      background-color: #1ebe5d;
       transform: translateY(-2px);
     }
 
@@ -109,7 +87,6 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 10px;
       text-decoration: none;
       display: inline-block;
       transition: background-color 0.3s, transform 0.2s;
@@ -118,6 +95,17 @@
     .whatsapp-button:hover {
       background-color: #1ebe5d;
       transform: translateY(-2px);
+    }
+
+    .hubungi-kami {
+      margin-top: 20px;
+      color: #ffffff; /* WARNA PUTIH UNTUK TEKS */
+    }
+
+    .telefon {
+      color: #ffffff; /* NOMBOR TELEFON PUTIH */
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
     .footer {
@@ -135,6 +123,7 @@
       <img src="beinnbarber-logo.jpeg" alt="BeinnBarber Logo">
     </div>
 
+    <!-- TAJUK PUTIH -->
     <h2>Tempahan Gunting Rambut</h2>
 
     <form id="bookingForm">
@@ -145,24 +134,32 @@
       <select name="masaTempahan" id="masaTempahan" required>
         <option value="">Pilih Masa</option>
         <option value="3:00 PM">3:00 PM</option>
+        <option value="3:30 PM">3:30 PM</option>
         <option value="4:00 PM">4:00 PM</option>
+        <option value="4:30 PM">3:30 PM</option>
         <option value="5:00 PM">5:00 PM</option>
+        <option value="5:30 PM">5:30 PM</option>
         <option value="9:00 PM">9:00 PM</option>
+        <option value="9:30 PM">9:30 PM</option>
         <option value="10:00 PM">10:00 PM</option>
+        <option value="10:30 PM">10:30 PM</option>
         <option value="11:00 PM">11:00 PM</option>
+        <option value="11:30 PM">11:30 PM</option>
         <option value="12:00 PM">12:00 PM</option>
-        <option value="1:00 AM">1:00 AM</option>
+        <option value="12:30 PM">12:30 PM</option>
       </select>
 
+      <!-- BUTANG TEMPAH SEKARANG -->
       <button type="submit">Tempah Sekarang</button>
     </form>
 
-    <!-- Nombor Telefon & WhatsApp Direct -->
-    <div style="margin-top: 20px;">
-      <p style="color: #ccc; margin-bottom: 10px;">Atau hubungi kami:</p>
-      <p style="color: #00ffc3; font-weight: bold;">Telefon: 019-2032123</p>
+    <!-- HUBUNGI KAMI + TELEFON PUTIH -->
+    <div class="hubungi-kami">
+      <p>Atau hubungi kami:</p>
+      <p class="telefon">Telefon: 019 2032123</p>
 
-      <a href="https://wa.me/601932123?text=Hai%20BeinnBarber%2C%20saya%20dah%20buat%20tempahan" target="_blank" class="whatsapp-button">
+      <!-- BUTANG WHATSAPP SAMA WARNA -->
+      <a href="https://wa.me/60192032123" target="_blank" class="whatsapp-button">
         WhatsApp Sekarang
       </a>
     </div>
