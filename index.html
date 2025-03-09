@@ -35,7 +35,7 @@
 
     h2 {
       margin-bottom: 20px;
-      color: #ffffff; /* WARNA PUTIH UNTUK TAJUK */
+      color: #ffffff;
       font-weight: 600;
       font-size: 24px;
     }
@@ -60,8 +60,8 @@
     }
 
     button {
-      background-color: #25D366; /* HIJAU SAMA MACAM WHATSAPP */
-      color: white; /* TULISAN PUTIH */
+      background-color: #25D366;
+      color: white;
       padding: 14px;
       border: none;
       width: 100%;
@@ -99,11 +99,11 @@
 
     .hubungi-kami {
       margin-top: 20px;
-      color: #ffffff; /* WARNA PUTIH UNTUK TEKS */
+      color: #ffffff;
     }
 
     .telefon {
-      color: #ffffff; /* NOMBOR TELEFON PUTIH */
+      color: #ffffff;
       font-weight: bold;
       margin-bottom: 10px;
     }
@@ -123,16 +123,21 @@
       <img src="beinnbarber-logo.jpeg" alt="BeinnBarber Logo">
     </div>
 
-    <!-- TAJUK PUTIH -->
     <h2>Tempahan Gunting Rambut</h2>
 
     <form id="bookingForm">
       <label for="nama">Nama:</label>
       <input type="text" name="nama" id="nama" required placeholder="Masukkan nama anda">
 
+      <!-- RUANGAN NOMBOR TELEFON -->
+      <label for="noTelefon">Nombor Telefon:</label>
+      <input type="tel" name="noTelefon" id="noTelefon" required placeholder="Contoh: 0123456789" pattern="[0-9]{10,12}" title="Masukkan nombor telefon tanpa sengkang. Contoh: 0123456789">
+
       <label for="masaTempahan">Masa Tempahan:</label>
       <select name="masaTempahan" id="masaTempahan" required>
-        <option value="">Pilih Masa</option>
+        <option value="1:30 PM">1:30 PM</option>
+        <option value="2:00 PM">2:00 PM</option>
+        <option value="2:30 PM">2:30 PM</option>
         <option value="3:00 PM">3:00 PM</option>
         <option value="3:30 PM">3:30 PM</option>
         <option value="4:00 PM">4:00 PM</option>
@@ -149,16 +154,13 @@
         <option value="12:30 PM">12:30 PM</option>
       </select>
 
-      <!-- BUTANG TEMPAH SEKARANG -->
       <button type="submit">Tempah Sekarang</button>
     </form>
 
-    <!-- HUBUNGI KAMI + TELEFON PUTIH -->
     <div class="hubungi-kami">
       <p>Atau hubungi kami:</p>
-      <p class="telefon">Telefon: 019 2032123</p>
+      <p class="telefon">Telefon: 019-2032123</p>
 
-      <!-- BUTANG WHATSAPP SAMA WARNA -->
       <a href="https://wa.me/60192032123?text=Hai%20BeinnBarber%2C%20saya%20dah%20buat%20tempahan" target="_blank" class="whatsapp-button">
         WhatsApp Sekarang
       </a>
@@ -176,12 +178,14 @@
       e.preventDefault();
 
       const nama = form.nama.value;
+      const noTelefon = form.noTelefon.value;
       const masaTempahan = form.masaTempahan.value;
 
       fetch('https://script.google.com/macros/s/AKfycbxJ1Ni0vAumY41baxQPB1A5pA-gcP3PFFxLT98aBCaTYdknmtzB3qmmjIC8B_w1vr7b/exec', {
         method: 'POST',
         body: new URLSearchParams({
           'nama': nama,
+          'noTelefon': noTelefon,
           'masaTempahan': masaTempahan
         })
       })
