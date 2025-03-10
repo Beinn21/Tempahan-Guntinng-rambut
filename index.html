@@ -1,79 +1,141 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tempahan Gunting Rambut | BeinnBarber</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tempahan BeinnBarber</title>
   <style>
+    /* Asas styling */
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f8f9fa;
       margin: 0;
-      padding: 0;
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000; /* Latar belakang hitam */
+      color: #fff; /* Teks putih */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    .container {
-      max-width: 500px;
-      margin: 50px auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      padding: 30px;
-    }
-    h2 {
+
+    header {
       text-align: center;
-      color: #222;
-      margin-bottom: 20px;
+      padding: 20px;
+      background: #111;
+      animation: fadeInDown 1s ease-out;
     }
-    label {
-      font-weight: bold;
-      display: block;
-      margin: 15px 0 5px;
+
+    header img {
+      max-width: 150px;
+      height: auto;
+      margin-bottom: 10px;
     }
-    input, select, button {
-      width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    button {
-      background-color: #222;
+
+    h1 {
+      margin: 10px 0 0 0;
+      font-size: 32px;
       color: #fff;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    form {
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+      width: 100%;
+      max-width: 400px;
+      animation: slideUp 1s ease-out;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #e91e63;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background-color 0.3s ease;
     }
+
     button:hover {
-      background-color: #555;
+      background-color: #ff4081;
     }
-    .status {
+
+    footer {
       text-align: center;
+      padding: 20px;
       font-size: 14px;
-      margin-top: 10px;
+      background-color: #111;
+      color: #aaa;
     }
-    .success {
-      color: green;
+
+    footer a {
+      color: #e91e63;
+      text-decoration: none;
     }
-    .error {
-      color: red;
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2>Tempahan Gunting Rambut</h2>
+  <header>
+    <!-- Gantikan src dengan link logo kedai -->
+    <img src="https://via.placeholder.com/150x150?text=BeinnBarber+Logo" alt="BeinnBarber Logo">
+    <h1>Tempahan Gunting Rambut</h1>
+  </header>
+
+  <main>
     <form id="bookingForm">
-      <label for="nama">Nama</label>
-      <input type="text" id="nama" name="nama" placeholder="Masukkan nama penuh" required />
+      <label for="nama">Nama Penuh</label>
+      <input type="text" id="nama" name="nama" required>
 
-      <label for="noTelefon">Nombor Telefon</label>
-      <input type="tel" id="noTelefon" name="noTelefon" placeholder="Contoh: 0123456789" required />
+      <label for="noTelefon">No Telefon</label>
+      <input type="tel" id="noTelefon" name="noTelefon" required>
 
-      <label for="masaTempahan">Masa Tempahan</label>
+      <label for="masaTempahan">Pilih Masa</label>
       <select id="masaTempahan" name="masaTempahan" required>
-        <option value="">-- Pilih Masa --</option>
         <option value="">-- Pilih Masa --</option>
         <option value="1:30 PM">1:30 PM</option>
         <option value="2:00 PM">2:00 PM</option>
@@ -92,40 +154,51 @@
         <option value="11:30 PM">11:30 PM</option>
         <option value="12:00 AM">12:00 AM</option>
         <option value="12:30 AM">12:30 AM</option>
+        <!-- Tambah slot lain ikut keperluan -->
       </select>
 
       <button type="submit">Hantar Tempahan</button>
-
-      <div class="status" id="statusMsg"></div>
     </form>
-  </div>
+  </main>
+
+  <footer>
+    <p>Untuk pertanyaan lanjut, hubungi <a href="https://wa.me/60123456789" target="_blank">WhatsApp BeinnBarber</a></p>
+    <p>&copy; 2025 BeinnBarber. Semua hak dilindungi.</p>
+  </footer>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxFmMY2fNnYcATHQjSVw0eNptG-77wHKkg7VpWFhz40WEjNJcVkYrrJqwPupAzrDhX5/exec'; // Ganti dengan URL sebenar
-    const form = document.getElementById('bookingForm');
-    const statusMsg = document.getElementById('statusMsg');
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      statusMsg.textContent = "Sedang hantar tempahan...";
-      statusMsg.className = '';
+      const nama = document.getElementById('nama').value;
+      const noTelefon = document.getElementById('noTelefon').value;
+      const masaTempahan = document.getElementById('masaTempahan').value;
 
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'success') {
-            statusMsg.textContent = data.msg;
-            statusMsg.className = 'status success';
-            window.location.href = data.whatsapp; // Redirect ke WhatsApp
-          } else {
-            statusMsg.textContent = data.msg;
-            statusMsg.className = 'status error';
-          }
-        })
-        .catch(error => {
-          statusMsg.textContent = 'Ralat hantar tempahan. Sila cuba lagi.';
-          statusMsg.className = 'status error';
-        });
+      const data = {
+        nama: nama,
+        noTelefon: noTelefon,
+        masaTempahan: masaTempahan
+      };
+
+      fetch('https://script.google.com/macros/s/AKfycbxFmMY2fNnYcATHQjSVw0eNptG-77wHKkg7VpWFhz40WEjNJcVkYrrJqwPupAzrDhX5/exec', { // Ganti dengan URL Google Apps Script kau
+        method: 'POST',
+        mode: 'no-cors', // untuk elak CORS error (tapi respons takkan boleh baca)
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(() => {
+        alert('Tempahan berjaya dihantar!');
+
+        // Terus redirect ke WhatsApp untuk confirmation
+        const whatsappMsg = Hai ${nama}, tempahan anda untuk jam ${masaTempahan} telah berjaya. Jumpa nanti di BeinnBarber!;
+        window.open(https://wa.me/${noTelefon}?text=${encodeURIComponent(whatsappMsg)}, '_blank');
+
+        document.getElementById('bookingForm').reset();
+      }).catch(err => {
+        alert('Ada masalah dengan tempahan. Sila cuba lagi.');
+        console.error(err);
+      });
     });
   </script>
 
