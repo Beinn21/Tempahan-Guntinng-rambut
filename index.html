@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tempahan BeinnBarber</title>
 
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -27,31 +28,15 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.7);
       max-width: 400px;
       width: 100%;
-      animation: fadeIn 0.8s ease;
       text-align: center;
+      position: relative;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .logo img { width: 200px; margin-bottom: 20px; }
 
-    .logo img {
-      width: 200px;
-      margin-bottom: 20px;
-    }
+    h2 { font-size: 22px; margin-bottom: 20px; color: #ffffff; }
 
-    h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-
-    label {
-      font-size: 14px;
-      display: block;
-      margin-bottom: 5px;
-      text-align: left;
-    }
+    label { font-size: 14px; display: block; margin-bottom: 5px; color: #cccccc; text-align: left; }
 
     input, select {
       width: 100%;
@@ -76,46 +61,18 @@
       cursor: pointer;
     }
 
-    .hubungi-kami {
-      margin-top: 30px;
-      font-size: 14px;
-    }
+    button:hover { background-color: #1ebe5d; }
 
-    .telefon {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+    #slotStatus { margin-top: 30px; text-align: left; }
 
-    .whatsapp-button {
-      display: block;
-      background-color: #25D366;
-      color: white;
-      text-align: center;
-      padding: 14px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    #slotStatus ul { padding: 0; list-style: none; }
 
-    #slotStatus {
-      margin-top: 30px;
-      text-align: left;
-    }
-
-    #slotStatus ul {
-      padding: 0;
-      list-style: none;
-    }
-
-    #slotStatus li {
-      margin-bottom: 8px;
-    }
+    #slotStatus li { margin-bottom: 8px; }
 
   </style>
 </head>
 
 <body>
-
   <div class="container">
     <div class="logo">
       <img src="beinnbarber-logo.jpeg" alt="BeinnBarber Logo">
@@ -125,10 +82,10 @@
 
     <form id="bookingForm">
       <label for="nama">Nama:</label>
-      <input type="text" id="nama" name="nama" required placeholder="Masukkan nama anda" />
+      <input type="text" id="nama" name="nama" required />
 
       <label for="noTelefon">Nombor Telefon:</label>
-      <input type="tel" id="noTelefon" name="noTelefon" required placeholder="Contoh: 0123456789" pattern="[0-9]{10,12}" />
+      <input type="tel" id="noTelefon" name="noTelefon" required pattern="[0-9]{9,12}" />
 
       <label for="masaTempahan">Masa Tempahan:</label>
       <select id="masaTempahan" name="masaTempahan" required>
@@ -141,15 +98,9 @@
         <option value="4:00 PM">4:00 PM</option>
         <option value="4:30 PM">4:30 PM</option>
         <option value="5:00 PM">5:00 PM</option>
-        <option value="5:30 PM">5:30 PM</option>
         <option value="9:00 PM">9:00 PM</option>
         <option value="9:30 PM">9:30 PM</option>
         <option value="10:00 PM">10:00 PM</option>
-        <option value="10:30 PM">10:30 PM</option>
-        <option value="11:00 PM">11:00 PM</option>
-        <option value="11:30 PM">11:30 PM</option>
-        <option value="12:00 AM">12:00 AM</option>
-        <option value="12:30 AM">12:30 AM</option>
       </select>
 
       <button type="submit">Tempah Sekarang</button>
@@ -160,18 +111,13 @@
       <ul id="slotList"></ul>
     </div>
 
-    <div class="hubungi-kami">
-      <p>Atau hubungi kami:</p>
-      <p class="telefon">Telefon: 019-2032123</p>
-      <a href="https://wa.me/60192032123?text=Hai%20BeinnBarber%2C%20saya%20nak%20buat%20tempahan!" target="_blank" class="whatsapp-button">WhatsApp Sekarang</a>
-    </div>
-
     <div class="footer">
       ©️ 2025 BeinnBarber. Semua Hak DiLindungi.
     </div>
   </div>
 
   <script>
+    const webAppURL = 'https://script.google.com/macros/s/AKfycbx1BnsVurl6uzPHWJpJTbDn98RWLgcG51tz4ou1muBSKi6RqSrZLnKDa-OUWC31r88a/exec';
     const form = document.getElementById('bookingForm');
 
     form.addEventListener('submit', async (e) => {
@@ -187,14 +133,10 @@
       }
 
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbx1BnsVurl6uzPHWJpJTbDn98RWLgcG51tz4ou1muBSKi6RqSrZLnKDa-OUWC31r88a/exec', {
+        const response = await fetch(webAppURL, {
           method: 'POST',
-          body: JSON.stringify({
-            nama: nama,
-            noTelefon: noTelefon,
-            masaTempahan: masaTempahan
-          }),
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: nama=${encodeURIComponent(nama)}&noTelefon=${encodeURIComponent(noTelefon)}&masaTempahan=${encodeURIComponent(masaTempahan)}
         });
 
         const result = await response.json();
@@ -215,7 +157,7 @@
 
     async function semakSlotPenuh() {
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbx1BnsVurl6uzPHWJpJTbDn98RWLgcG51tz4ou1muBSKi6RqSrZLnKDa-OUWC31r88a/exec');
+        const response = await fetch(webAppURL);
         const result = await response.json();
 
         const slotList = document.getElementById('slotList');
@@ -223,9 +165,7 @@
 
         const masaList = [
           "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",
-          "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM",
-          "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM",
-          "11:00 PM", "11:30 PM", "12:00 AM", "12:30 AM"
+          "4:00 PM", "4:30 PM", "5:00 PM", "9:00 PM", "9:30 PM", "10:00 PM"
         ];
 
         masaList.forEach(masa => {
@@ -256,6 +196,5 @@
       setInterval(semakSlotPenuh, 10000);
     };
   </script>
-
 </body>
 </html>
