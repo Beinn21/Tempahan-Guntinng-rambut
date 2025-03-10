@@ -3,92 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tempahan BeinnBarber</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+  <title>Tempahan Gunting Rambut | BeinnBarber</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
       margin: 0;
-      background: #0f0f0f;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
+      padding: 0;
+      color: #333;
     }
-
     .container {
-      background: #1a1a1a;
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
       border-radius: 12px;
-      padding: 30px 25px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-      max-width: 400px;
-      width: 100%;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+    h2 {
       text-align: center;
-      position: relative;
+      color: #222;
+      margin-bottom: 20px;
     }
-
-    .logo img { width: 200px; margin-bottom: 20px; }
-
-    h2 { font-size: 22px; margin-bottom: 20px; color: #ffffff; }
-
-    label { font-size: 14px; display: block; margin-bottom: 5px; color: #cccccc; text-align: left; }
-
-    input, select {
-      width: 100%;
-      padding: 12px 14px;
-      margin-bottom: 18px;
-      border-radius: 6px;
-      border: 1px solid #333;
-      background: #262626;
-      color: #fff;
-      font-size: 14px;
-    }
-
-    button {
-      background-color: #25D366;
-      color: #fff;
-      padding: 14px;
-      width: 100%;
-      border: none;
-      border-radius: 6px;
+    label {
       font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
+      display: block;
+      margin: 15px 0 5px;
     }
-
-    button:hover { background-color: #1ebe5d; }
-
-    #slotStatus { margin-top: 30px; text-align: left; }
-
-    #slotStatus ul { padding: 0; list-style: none; }
-
-    #slotStatus li { margin-bottom: 8px; }
-
+    input, select, button {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #222;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    .status {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
   </style>
 </head>
-
 <body>
+
   <div class="container">
-    <div class="logo">
-      <img src="beinnbarber-logo.jpeg" alt="BeinnBarber Logo">
-    </div>
-
     <h2>Tempahan Gunting Rambut</h2>
-
     <form id="bookingForm">
-      <label for="nama">Nama:</label>
-      <input type="text" id="nama" name="nama" required />
+      <label for="nama">Nama</label>
+      <input type="text" id="nama" name="nama" placeholder="Masukkan nama penuh" required />
 
-      <label for="noTelefon">Nombor Telefon:</label>
-      <input type="tel" id="noTelefon" name="noTelefon" required pattern="[0-9]{9,12}" />
+      <label for="noTelefon">Nombor Telefon</label>
+      <input type="tel" id="noTelefon" name="noTelefon" placeholder="Contoh: 0123456789" required />
 
-      <label for="masaTempahan">Masa Tempahan:</label>
+      <label for="masaTempahan">Masa Tempahan</label>
       <select id="masaTempahan" name="masaTempahan" required>
+        <option value="">-- Pilih Masa --</option>
         <option value="">-- Pilih Masa --</option>
         <option value="1:30 PM">1:30 PM</option>
         <option value="2:00 PM">2:00 PM</option>
@@ -98,103 +83,51 @@
         <option value="4:00 PM">4:00 PM</option>
         <option value="4:30 PM">4:30 PM</option>
         <option value="5:00 PM">5:00 PM</option>
+        <option value="5:30 PM">5:30 PM</option>
         <option value="9:00 PM">9:00 PM</option>
         <option value="9:30 PM">9:30 PM</option>
         <option value="10:00 PM">10:00 PM</option>
+        <option value="10:30 PM">10:30 PM</option>
+        <option value="11:00 PM">11:00 PM</option>
+        <option value="11:30 PM">11:30 PM</option>
+        <option value="12:00 AM">12:00 AM</option>
+        <option value="12:30 AM">12:30 AM</option>
       </select>
 
-      <button type="submit">Tempah Sekarang</button>
+      <button type="submit">Hantar Tempahan</button>
+
+      <div class="status" id="statusMsg"></div>
     </form>
-
-    <div id="slotStatus">
-      <h3>Status Slot Tempahan</h3>
-      <ul id="slotList"></ul>
-    </div>
-
-    <div class="footer">
-      ©️ 2025 BeinnBarber. Semua Hak DiLindungi.
-    </div>
   </div>
 
   <script>
-    const webAppURL = 'https://script.google.com/macros/s/AKfycbx1BnsVurl6uzPHWJpJTbDn98RWLgcG51tz4ou1muBSKi6RqSrZLnKDa-OUWC31r88a/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxFmMY2fNnYcATHQjSVw0eNptG-77wHKkg7VpWFhz40WEjNJcVkYrrJqwPupAzrDhX5/exec'; // Ganti dengan URL sebenar
     const form = document.getElementById('bookingForm');
+    const statusMsg = document.getElementById('statusMsg');
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
+      statusMsg.textContent = "Sedang hantar tempahan...";
+      statusMsg.className = '';
 
-      const nama = document.getElementById('nama').value.trim();
-      const noTelefon = document.getElementById('noTelefon').value.trim();
-      const masaTempahan = document.getElementById('masaTempahan').value;
-
-      if (!nama || !noTelefon || !masaTempahan) {
-        alert("Sila lengkapkan semua maklumat.");
-        return;
-      }
-
-      try {
-        const response = await fetch(webAppURL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: nama=${encodeURIComponent(nama)}&noTelefon=${encodeURIComponent(noTelefon)}&masaTempahan=${encodeURIComponent(masaTempahan)}
-        });
-
-        const result = await response.json();
-
-        if (result.status === 'success') {
-          alert(result.msg);
-          window.open(result.whatsapp, '_blank');
-          form.reset();
-          semakSlotPenuh();
-        } else {
-          alert(result.msg);
-        }
-      } catch (error) {
-        console.error('Ralat:', error);
-        alert('Ralat sistem! Sila cuba lagi.');
-      }
-    });
-
-    async function semakSlotPenuh() {
-      try {
-        const response = await fetch(webAppURL);
-        const result = await response.json();
-
-        const slotList = document.getElementById('slotList');
-        slotList.innerHTML = '';
-
-        const masaList = [
-          "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",
-          "4:00 PM", "4:30 PM", "5:00 PM", "9:00 PM", "9:30 PM", "10:00 PM"
-        ];
-
-        masaList.forEach(masa => {
-          const kira = result.data[masa] || 0;
-          const listItem = document.createElement('li');
-
-          if (kira >= 2) {
-            listItem.innerHTML = <strong>${masa}</strong> - Penuh (${kira}/2);
-            listItem.style.color = 'red';
-            const option = document.querySelector(#masaTempahan option[value="${masa}"]);
-            if (option) option.disabled = true;
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            statusMsg.textContent = data.msg;
+            statusMsg.className = 'status success';
+            window.location.href = data.whatsapp; // Redirect ke WhatsApp
           } else {
-            listItem.innerHTML = ${masa} - Available (${kira}/2);
-            listItem.style.color = 'green';
-            const option = document.querySelector(#masaTempahan option[value="${masa}"]);
-            if (option) option.disabled = false;
+            statusMsg.textContent = data.msg;
+            statusMsg.className = 'status error';
           }
-
-          slotList.appendChild(listItem);
+        })
+        .catch(error => {
+          statusMsg.textContent = 'Ralat hantar tempahan. Sila cuba lagi.';
+          statusMsg.className = 'status error';
         });
-      } catch (error) {
-        console.error('Ralat:', error);
-      }
-    }
-
-    window.onload = () => {
-      semakSlotPenuh();
-      setInterval(semakSlotPenuh, 10000);
-    };
+    });
   </script>
+
 </body>
 </html>
