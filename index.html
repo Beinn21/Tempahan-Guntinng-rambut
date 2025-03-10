@@ -254,7 +254,7 @@
       }
 
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwhML4zH9JaX4pnHIR9bgbm8wM9kRL3rOrmA4weaghK84Nd08Kcm9UIGusapShnMTF-/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbx9fqW0mm8_bhQiHsgB226l1k92X9VnGrv22hsIO18HLn7L1jJoXMcmnYD22G9AeB9f/exec', {
           method: 'POST',
           body: new URLSearchParams({
             'nama': nama,
@@ -278,7 +278,7 @@
 
     async function semakSlotPenuh() {
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwhML4zH9JaX4pnHIR9bgbm8wM9kRL3rOrmA4weaghK84Nd08Kcm9UIGusapShnMTF-/exec');
+        const response = await fetch('https://script.google.com/macros/s/AKfycbx9fqW0mm8_bhQiHsgB226l1k92X9VnGrv22hsIO18HLn7L1jJoXMcmnYD22G9AeB9f/exec');
         
         if (response.ok) {
           const result = await response.json();
